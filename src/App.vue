@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="nav" v-if="false">
     <router-link to="/">Início</router-link> |
     <router-link to="/about">Sobre</router-link>
   </div>

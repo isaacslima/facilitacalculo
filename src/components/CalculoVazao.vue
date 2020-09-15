@@ -1,9 +1,18 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>Calcula Vazão</h1>
     <p>
       Insira os dados para Calcular a vazão de água por tempo.
     </p>
+    <input v-model="tempo" type="number"/> em segundos
+    <br>
+    <input v-model="quantidade" type="number"/> em ml
+    <br>
+    <button type="submit" @click="calcular()">Calcular</button>
+    <br>
+    <h3 v-if="show">
+      Total de vazão: {{ total }} L/h (litros por hora)
+    </h3>
   </div>
 </template>
 
@@ -12,26 +21,25 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'CalculoVazao',
-  props: {
-    msg: String,
+  data() {
+    return {
+      tempo: 0,
+      quantidade: 0,
+      total: 0,
+      show: false
+    }
   },
+  methods: {
+    calcular(): void {
+      console.log(this.quantidade)
+      console.log(this.tempo)
+      this.total = 3.6 * this.quantidade / this.tempo
+      console.log(this.total)
+      this.show = true
+    }
+  }
 });
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
